@@ -1,0 +1,49 @@
+﻿# ==============================================================================
+# .gitignore - Proyecto CaribeShop (Infraestructura para TI)
+# Cumplimiento Requisito S1: Prohibición absoluta de estado y secretos en Git
+# ==============================================================================
+
+# 1. Archivos locales de Terraform y estado (NUNCA subir a Git)
+**/.terraform/*
+*.tfstate
+*.tfstate.*
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc
+
+# 2. Variables con datos reales o sensibles (solo se permite .tfvars.example)
+*.tfvars
+!terraform.tfvars.example
+*.auto.tfvars
+
+# 3. Planes binarios de Terraform (pueden contener secretos sin cifrar)
+*.tfplan
+tfplan
+
+# 4. Llaves criptográficas, certificados y variables de entorno
+*.pem
+*.key
+*.pfx
+*.p12
+id_rsa
+id_ed25519
+.env
+.env.*
+
+# 5. Entornos virtuales Python y caché local
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+*.egg-info/
+
+# 6. Archivos temporales del sistema operativo e IDE
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
