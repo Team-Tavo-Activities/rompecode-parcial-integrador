@@ -1,0 +1,8 @@
+﻿project_name      = "caribeshop"
+environment       = "prod"
+location          = "eastus2"
+admin_username    = "azureuser"
+ssh_public_key    = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAI_REEMPLAZAR_CON_TU_LLAVE_PUBLICA"
+my_public_ip      = "0.0.0.0/32"
+db_admin_username = "caribeadmin"
+db_admin_password = "REEMPLAZAR_POR_PASSWORD_COMPLEJA_2026!"
