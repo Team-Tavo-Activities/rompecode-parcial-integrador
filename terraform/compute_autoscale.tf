@@ -7,7 +7,7 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
   zones                           = var.vmss_zones
   zone_balance                    = false
   overprovision                   = false
-  admin_username                  = "azureuser"
+  admin_username                  = var.admin_username
   disable_password_authentication = true
   upgrade_mode                    = "Manual"
   custom_data                     = base64encode(templatefile("${path.module}/../app/cloud-init.yaml", { key_vault_name = azurerm_key_vault.kv.name }))
@@ -16,8 +16,8 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
     type = "SystemAssigned"
   }
   admin_ssh_key {
-    username   = "azureuser"
-    public_key = var.vmss_admin_public_key
+    username   = var.admin_username
+    public_key = var.ssh_public_key
   }
   automatic_instance_repair {
     enabled      = true
@@ -52,11 +52,6 @@ resource "azurerm_linux_virtual_machine_scale_set" "vmss" {
     azurerm_subnet_network_security_group_association.app,
     azurerm_lb_outbound_rule.agent
   ]
-}
-
-variable "vmss_admin_public_key" {
-  description = "Public SSH key required by Azure. The NSG denies inbound SSH."
-  type        = string
 }
 
 variable "vmss_sku" {

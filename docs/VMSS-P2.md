@@ -4,7 +4,7 @@ El VMSS de laboratorio utiliza Standard_B2as_v2, dos instancias de base en las z
 
 ## Integración
 
-compute_autoscale.tf usa los recursos de red azurerm_subnet.app, azurerm_lb_probe.app, azurerm_lb_backend_address_pool.app, azurerm_subnet_network_security_group_association.app y azurerm_lb_outbound_rule.agent, además de azurerm_resource_group.rg. Se requiere la clave SSH pública vmss_admin_public_key y las variables de proyecto de la base. El VMSS inyecta el nombre de azurerm_key_vault.kv en app/cloud-init.yaml. Confirmar los identificadores con la rama de infraestructura de Luis.
+compute_autoscale.tf usa los recursos de red azurerm_subnet.app, azurerm_lb_probe.app, azurerm_lb_backend_address_pool.app, azurerm_subnet_network_security_group_association.app y azurerm_lb_outbound_rule.agent, además de azurerm_resource_group.rg. Se requiere la clave SSH pública ssh_public_key y el usuario admin_username y las variables de proyecto de la base. El VMSS inyecta el nombre de azurerm_key_vault.kv en app/cloud-init.yaml. Confirmar los identificadores con la rama de infraestructura de Luis.
 
 ## Evidencias P2
 
