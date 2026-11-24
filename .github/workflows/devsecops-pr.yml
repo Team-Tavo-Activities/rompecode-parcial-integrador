@@ -1,0 +1,49 @@
+﻿name: DevSecOps IaC Validation
+
+on:
+  pull_request:
+    branches:
+      - main
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/**'
+
+permissions:
+  contents: read
+
+jobs:
+  terraform-security-gate:
+    name: DevSecOps IaC Validation
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: 1.7.5
+
+      - name: Check Terraform Format (fmt)
+        working-directory: terraform
+        run: terraform fmt -check -recursive
+
+      - name: Terraform Init (sin backend remoto para validación sintáctica)
+        working-directory: terraform
+        run: terraform init -backend=false
+
+      - name: Terraform Validate
+        working-directory: terraform
+        run: terraform validate
+
+      - name: Setup Python for Checkov
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install Checkov
+        run: pip install --quiet checkov
+
+      - name: Run Checkov IaC Security Scan
+        run: checkov -d terraform/ --framework terraform --compact
