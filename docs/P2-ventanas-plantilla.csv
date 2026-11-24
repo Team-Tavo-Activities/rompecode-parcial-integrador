@@ -1,0 +1,3 @@
+prueba,id_azure,hostname,ip_privada,inicio_utc,exclusion_utc,recuperacion_utc,peticiones,fallidas,error_pct,recuperacion_segundos,capacidad_sana_recuperada,mecanismo_observado,evidencias
+logica,,,,,,,,,,,,,
+abrupta,,,,,,,,,,,,,
